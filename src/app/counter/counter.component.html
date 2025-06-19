@@ -1,0 +1,64 @@
+<div
+  class="max-w-md mx-auto p-6 shadow-lg rounded-xl text-center space-y-6 bg-white sm:mt-10 mt-6"
+>
+  <h1 class="text-2xl sm:text-3xl font-bold">🧮 Counter App</h1>
+
+  <div class="text-5xl font-bold transition-all duration-300">{{ count }}</div>
+
+  <!-- Buttons Row -->
+  <div class="flex flex-wrap justify-center gap-4">
+    <button
+      (click)="increment()"
+      class="px-5 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-all"
+    >
+      ➕
+    </button>
+    <button
+      (click)="decrement()"
+      class="px-5 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-all"
+    >
+      ➖
+    </button>
+    <button
+      (click)="reset()"
+      class="px-5 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-all"
+    >
+      🔄
+    </button>
+  </div>
+
+  <!-- History Section -->
+  <div class="text-left">
+    <div
+      class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2"
+    >
+      <h2 class="text-lg font-semibold">📜 History</h2>
+
+      <button
+        *ngIf="history.length > 0"
+        (click)="clearHistory()"
+        class="text-sm text-red-600 underline self-start sm:self-auto"
+      >
+        Clear History
+      </button>
+    </div>
+
+    <ol class="list-decimal pl-5 space-y-1 text-sm max-h-64 overflow-y-auto">
+      <li *ngFor="let item of history; index as i">
+        <span
+          [ngClass]="{
+            'text-green-600 font-semibold': item.action === '+1',
+            'text-red-600 font-semibold': item.action === '-1',
+            'text-purple-600 font-semibold': item.action === 'Reset'
+          }"
+        >
+          [{{ item.action }}]
+        </span>
+        <span class="ml-1"
+          >Counter is now
+          <span class="font-bold text-black">{{ item.value }}</span>
+        </span>
+      </li>
+    </ol>
+  </div>
+</div>
