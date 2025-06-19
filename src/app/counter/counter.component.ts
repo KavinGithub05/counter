@@ -33,6 +33,7 @@ export class CounterComponent {
   }
 
   clearHistory() {
+    this.count = 0;
     this.history = [];
   }
 }
